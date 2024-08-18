@@ -15,15 +15,30 @@ class _EditImageScreenState extends EditImageViewModel {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Image.file(File(widget.selectedImage)),
+      body: SafeArea(
+          child: SizedBox(
+        height: MediaQuery.of(context).size.height * 0.3,
+        child: Stack(),
+      )),
       floatingActionButton: _addnewTextFab,
     );
   }
+
+  Widget get _selectedImage => Center(
+        child: Image.file(
+          File(widget.selectedImage),
+          fit: BoxFit.fill,
+          width: MediaQuery.of(context).size.width,
+        ),
+      );
 
   Widget get _addnewTextFab => FloatingActionButton(
         onPressed: () => addNewDialog(context),
         backgroundColor: Colors.white,
         tooltip: 'Add new text',
-        child: const Icon(Icons.edit,color: Colors.black,),
+        child: const Icon(
+          Icons.edit,
+          color: Colors.black,
+        ),
       );
 }
