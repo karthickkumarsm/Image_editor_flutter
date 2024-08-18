@@ -16,6 +16,7 @@ class _EditImageScreenState extends EditImageViewModel {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: _appBar,
       body: SafeArea(
           child: SizedBox(
         height: MediaQuery.of(context).size.height,
@@ -36,23 +37,56 @@ class _EditImageScreenState extends EditImageViewModel {
                   child: Draggable(
                     feedback: ImageText(textInfo: texts[i]),
                     child: ImageText(textInfo: texts[i]),
-                    onDragEnd: (drag){
+                    onDragEnd: (drag) {
                       final renderBox = context.findRenderObject() as RenderBox;
                       Offset off = renderBox.globalToLocal(drag.offset);
                       setState(() {
-                        texts[i].top = off.dy;
+                        texts[i].top = off.dy - 96;
                         texts[i].left = off.dx;
                       });
                     },
                   ),
                 ),
-              )
+              ),
+            creatorText.text.isNotEmpty
+                ? Positioned(
+                    left: 0,
+                    bottom: 0,
+                    child: Text(
+                      creatorText.text,
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black.withOpacity(0.3)),
+                    ),
+                  )
+                : const SizedBox.shrink(),
           ],
         ),
       )),
       floatingActionButton: _addnewTextFab,
     );
   }
+
+  AppBar get _appBar => AppBar(
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+        title: SizedBox(
+          height: 50,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              IconButton(
+                  onPressed: () {},
+                  tooltip: "Save Image",
+                  icon: const Icon(
+                    Icons.save,
+                    color: Colors.black,
+                  ))
+            ],
+          ),
+        ),
+      );
 
   Widget get _selectedImage => Center(
         child: Image.file(
