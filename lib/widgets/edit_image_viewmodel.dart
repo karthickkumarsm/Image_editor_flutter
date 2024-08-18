@@ -10,17 +10,16 @@ abstract class EditImageViewModel extends State<EditImageScreen> {
   addNewText(BuildContext context) {
     setState(() {
       texts.add(TextInfo(
-          Text: textEditingController.text,
+          text: textEditingController.text,
           left: 0,
-          top: 0,
+          top: 50,
           color: Colors.black,
           fontWeight: FontWeight.normal,
           fontStyle: FontStyle.normal,
           fontSize: 20,
           textAlign: TextAlign.left));
-          Navigator.of(context).pop();
-    }
-    );
+      Navigator.of(context).pop();
+    });
   }
 
   addNewDialog(context) {
