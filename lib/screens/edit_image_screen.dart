@@ -17,8 +17,25 @@ class _EditImageScreenState extends EditImageViewModel {
     return Scaffold(
       body: SafeArea(
           child: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.3,
-        child: Stack(),
+        height: MediaQuery.of(context).size.height,
+        child: Stack(
+          children: [
+            _selectedImage,
+            for(int i=0; i<texts.length;i++)
+              Positioned(
+                left: texts[i].left,
+                top: texts[i].top,
+                child: GestureDetector(
+                  onLongPress: (){
+                    print('Long press detected');
+                  },
+                  onTap: (){
+                    print('Single press detected');
+                  },
+                ),
+              )
+          ],
+        ),
       )),
       floatingActionButton: _addnewTextFab,
     );
