@@ -82,7 +82,80 @@ class _EditImageScreenState extends EditImageViewModel {
                   icon: const Icon(
                     Icons.save,
                     color: Colors.black,
-                  ))
+                  ),
+                  ),
+              IconButton(
+                  onPressed: () {},
+                  tooltip: "Save Image",
+                  icon: const Icon(
+                    Icons.save,
+                    color: Colors.black,
+                  ),
+                  ),
+              IconButton(
+                  onPressed: () {},
+                  tooltip: "Save Image",
+                  icon: const Icon(
+                    Icons.save,
+                    color: Colors.black,
+                  ),
+                  ),
+              IconButton(
+                  onPressed: () {},
+                  tooltip: "Save Image",
+                  icon: const Icon(
+                    Icons.save,
+                    color: Colors.black,
+                  ),
+                  ),
+              IconButton(
+                  onPressed: () {},
+                  tooltip: "Save Image",
+                  icon: const Icon(
+                    Icons.save,
+                    color: Colors.black,
+                  ),
+                  ),
+              IconButton(
+                  onPressed: () {},
+                  tooltip: "Save Image",
+                  icon: const Icon(
+                    Icons.save,
+                    color: Colors.black,
+                  ),
+                  ),
+              IconButton(
+                  onPressed: () {},
+                  tooltip: "Save Image",
+                  icon: const Icon(
+                    Icons.save,
+                    color: Colors.black,
+                  ),
+                  ),
+              IconButton(
+                  onPressed: () {},
+                  tooltip: "Bold",
+                  icon: const Icon(
+                    Icons.format_bold,
+                    color: Colors.black,
+                  ),
+                  ),
+              IconButton(
+                  onPressed: () {},
+                  tooltip: "Italic",
+                  icon: const Icon(
+                    Icons.format_italic,
+                    color: Colors.black,
+                  ),
+                  ),
+              IconButton(
+                  onPressed: () {},
+                  tooltip: "Add New Image",
+                  icon: const Icon(
+                    Icons.space_bar,
+                    color: Colors.black,
+                  ),
+                  ),
             ],
           ),
         ),
