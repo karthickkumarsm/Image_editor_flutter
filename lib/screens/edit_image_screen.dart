@@ -31,9 +31,7 @@ class _EditImageScreenState extends EditImageViewModel {
                   onLongPress: () {
                     print('Long press detected');
                   },
-                  onTap: () {
-                    print('Single press detected');
-                  },
+                  onTap: () => setCurrentIndex(context,i),
                   child: Draggable(
                     feedback: ImageText(textInfo: texts[i]),
                     child: ImageText(textInfo: texts[i]),
@@ -86,49 +84,41 @@ class _EditImageScreenState extends EditImageViewModel {
                   ),
               IconButton(
                   onPressed: () {},
-                  tooltip: "Save Image",
+                  tooltip: "Increase Font Size",
                   icon: const Icon(
-                    Icons.save,
+                    Icons.add,
                     color: Colors.black,
                   ),
                   ),
               IconButton(
                   onPressed: () {},
-                  tooltip: "Save Image",
+                  tooltip: "Decrease Font Size",
                   icon: const Icon(
-                    Icons.save,
+                    Icons.remove,
                     color: Colors.black,
                   ),
                   ),
               IconButton(
                   onPressed: () {},
-                  tooltip: "Save Image",
+                  tooltip: "Align Left",
                   icon: const Icon(
-                    Icons.save,
+                    Icons.format_align_left,
                     color: Colors.black,
                   ),
                   ),
               IconButton(
                   onPressed: () {},
-                  tooltip: "Save Image",
+                  tooltip: "Align Center",
                   icon: const Icon(
-                    Icons.save,
+                    Icons.format_align_center,
                     color: Colors.black,
                   ),
                   ),
               IconButton(
                   onPressed: () {},
-                  tooltip: "Save Image",
+                  tooltip: "Align Right",
                   icon: const Icon(
-                    Icons.save,
-                    color: Colors.black,
-                  ),
-                  ),
-              IconButton(
-                  onPressed: () {},
-                  tooltip: "Save Image",
-                  icon: const Icon(
-                    Icons.save,
+                    Icons.format_align_right,
                     color: Colors.black,
                   ),
                   ),
@@ -150,12 +140,92 @@ class _EditImageScreenState extends EditImageViewModel {
                   ),
               IconButton(
                   onPressed: () {},
-                  tooltip: "Add New Image",
+                  tooltip: "Add New Line",
                   icon: const Icon(
                     Icons.space_bar,
                     color: Colors.black,
                   ),
                   ),
+                  Tooltip(
+                    message: 'Black',
+                    child: GestureDetector(
+                      onTap: () => changeTextColor(Colors.black),
+                      child: const CircleAvatar(
+                        backgroundColor: Colors.black,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 5,),
+                  Tooltip(
+                    message: 'White',
+                    child: GestureDetector(
+                      onTap: () => changeTextColor(Colors.white),
+                      child: const CircleAvatar(
+                        backgroundColor: Colors.white,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 5,),
+                  Tooltip(
+                    message: 'Red',
+                    child: GestureDetector(
+                      onTap: () => changeTextColor(Colors.red),
+                      child: const CircleAvatar(
+                        backgroundColor: Colors.red,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 5,),
+                  Tooltip(
+                    message: 'Blue',
+                    child: GestureDetector(
+                      onTap: () => changeTextColor(Colors.blue),
+                      child: const CircleAvatar(
+                        backgroundColor: Colors.blue,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 5,),
+                  Tooltip(
+                    message: 'Yellow',
+                    child: GestureDetector(
+                      onTap: () => changeTextColor(Colors.yellow),
+                      child: const CircleAvatar(
+                        backgroundColor: Colors.yellow,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 5,),
+                  Tooltip(
+                    message: 'Green',
+                    child: GestureDetector(
+                      onTap: () => changeTextColor(Colors.green),
+                      child: const CircleAvatar(
+                        backgroundColor: Colors.green,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 5,),
+                  Tooltip(
+                    message: 'Orange',
+                    child: GestureDetector(
+                      onTap: () => changeTextColor(Colors.orange),
+                      child: const CircleAvatar(
+                        backgroundColor: Colors.orange,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 5,),
+                  Tooltip(
+                    message: 'Pink',
+                    child: GestureDetector(
+                      onTap: () => changeTextColor(Colors.pink),
+                      child: const CircleAvatar(
+                        backgroundColor: Colors.pink,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 5,),
             ],
           ),
         ),

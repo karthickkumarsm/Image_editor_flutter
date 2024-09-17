@@ -7,6 +7,24 @@ abstract class EditImageViewModel extends State<EditImageScreen> {
   TextEditingController textEditingController = TextEditingController();
   TextEditingController creatorText = TextEditingController();
   List<TextInfo> texts = [];
+  int CurrentIndex = 0;
+
+  setCurrentIndex(BuildContext context, index) {
+    setState(() {
+      CurrentIndex = index;
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+      content: Text('Selected for styling',style: TextStyle(fontSize: 16.0),),
+    ),
+    );
+  }
+
+  changeTextColor(Color color){
+    setState(() {
+      texts[CurrentIndex].color = color;
+    });
+  }
 
   addNewText(BuildContext context) {
     setState(() {
