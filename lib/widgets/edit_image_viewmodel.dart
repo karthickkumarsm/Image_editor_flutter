@@ -26,6 +26,63 @@ abstract class EditImageViewModel extends State<EditImageScreen> {
     });
   }
 
+  
+increaseFontSize(){
+    setState(() {
+      texts[CurrentIndex].fontSize += 2;
+    });
+  }
+
+decreaseFontSize(){
+    setState(() {
+      texts[CurrentIndex].fontSize -= 2;
+    });
+  }
+
+ alignLeft(){
+    setState(() {
+      texts[CurrentIndex].textAlign = TextAlign.left;
+    });
+  }
+ alignRight(){
+    setState(() {
+      texts[CurrentIndex].textAlign = TextAlign.right;
+    });
+  }
+ alignCenter(){
+    setState(() {
+      texts[CurrentIndex].textAlign = TextAlign.center;
+    });
+  }
+ boldText(){
+    setState(() {
+      if(texts[CurrentIndex].fontWeight==FontWeight.bold){
+        texts[CurrentIndex].fontWeight = FontWeight.normal;
+      }else{
+        texts[CurrentIndex].fontWeight = FontWeight.bold;
+      }
+    });
+  }
+ italicText(){
+    setState(() {
+      if(texts[CurrentIndex].fontStyle == FontStyle.italic){
+        texts[CurrentIndex].fontWeight = FontWeight.normal;
+      }else{
+        texts[CurrentIndex].fontStyle == FontStyle.italic;
+      }
+    });
+  }
+
+  addLinesToText() {
+    setState(() {
+      if( texts[CurrentIndex].text.contains('\n')){
+         texts[CurrentIndex].text = texts[CurrentIndex].text.replaceAll('\n', ' ');
+      }else{
+      texts[CurrentIndex].text = texts[CurrentIndex].text.replaceAll(' ', '\n');
+    }
+  });
+  }
+
   addNewText(BuildContext context) {
     setState(() {
       texts.add(TextInfo(

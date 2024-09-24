@@ -83,7 +83,7 @@ class _EditImageScreenState extends EditImageViewModel {
                   ),
                   ),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () => increaseFontSize(),
                   tooltip: "Increase Font Size",
                   icon: const Icon(
                     Icons.add,
@@ -91,7 +91,7 @@ class _EditImageScreenState extends EditImageViewModel {
                   ),
                   ),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () => decreaseFontSize(),
                   tooltip: "Decrease Font Size",
                   icon: const Icon(
                     Icons.remove,
@@ -99,7 +99,7 @@ class _EditImageScreenState extends EditImageViewModel {
                   ),
                   ),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () => alignLeft(),
                   tooltip: "Align Left",
                   icon: const Icon(
                     Icons.format_align_left,
@@ -107,7 +107,7 @@ class _EditImageScreenState extends EditImageViewModel {
                   ),
                   ),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () => alignCenter(),
                   tooltip: "Align Center",
                   icon: const Icon(
                     Icons.format_align_center,
@@ -115,7 +115,7 @@ class _EditImageScreenState extends EditImageViewModel {
                   ),
                   ),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () => alignRight(),
                   tooltip: "Align Right",
                   icon: const Icon(
                     Icons.format_align_right,
@@ -123,7 +123,7 @@ class _EditImageScreenState extends EditImageViewModel {
                   ),
                   ),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () => boldText(),
                   tooltip: "Bold",
                   icon: const Icon(
                     Icons.format_bold,
@@ -131,7 +131,7 @@ class _EditImageScreenState extends EditImageViewModel {
                   ),
                   ),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () => italicText(),
                   tooltip: "Italic",
                   icon: const Icon(
                     Icons.format_italic,
@@ -139,7 +139,7 @@ class _EditImageScreenState extends EditImageViewModel {
                   ),
                   ),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () => addLinesToText(),
                   tooltip: "Add New Line",
                   icon: const Icon(
                     Icons.space_bar,
