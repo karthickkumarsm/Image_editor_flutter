@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_editor/widgets/edit_image_viewmodel.dart';
 import 'package:image_editor/widgets/image_text.dart';
+import 'package:screenshot/screenshot.dart';
 
 class EditImageScreen extends StatefulWidget {
   final String selectedImage;
@@ -17,51 +18,56 @@ class _EditImageScreenState extends EditImageViewModel {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appBar,
-      body: SafeArea(
-          child: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        child: Stack(
-          children: [
-            _selectedImage,
-            for (int i = 0; i < texts.length; i++)
-              Positioned(
-                left: texts[i].left,
-                top: texts[i].top,
-                child: GestureDetector(
-                  onLongPress: () {
-                    print('Long press detected');
-                  },
-                  onTap: () => setCurrentIndex(context,i),
-                  child: Draggable(
-                    feedback: ImageText(textInfo: texts[i]),
-                    child: ImageText(textInfo: texts[i]),
-                    onDragEnd: (drag) {
-                      final renderBox = context.findRenderObject() as RenderBox;
-                      Offset off = renderBox.globalToLocal(drag.offset);
+      body: Screenshot(
+        controller: ScreenshotController(),
+        child: SafeArea(
+            child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: Stack(
+            children: [
+              _selectedImage,
+              for (int i = 0; i < texts.length; i++)
+                Positioned(
+                  left: texts[i].left,
+                  top: texts[i].top,
+                  child: GestureDetector(
+                    onLongPress: () {
                       setState(() {
-                        texts[i].top = off.dy - 96;
-                        texts[i].left = off.dx;
+                        removeText(context);
                       });
                     },
+                    onTap: () => setCurrentIndex(context,i),
+                    child: Draggable(
+                      feedback: ImageText(textInfo: texts[i]),
+                      child: ImageText(textInfo: texts[i]),
+                      onDragEnd: (drag) {
+                        final renderBox = context.findRenderObject() as RenderBox;
+                        Offset off = renderBox.globalToLocal(drag.offset);
+                        setState(() {
+                          texts[i].top = off.dy - 96;
+                          texts[i].left = off.dx;
+                        });
+                      },
+                    ),
                   ),
                 ),
-              ),
-            creatorText.text.isNotEmpty
-                ? Positioned(
-                    left: 0,
-                    bottom: 0,
-                    child: Text(
-                      creatorText.text,
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black.withOpacity(0.3)),
-                    ),
-                  )
-                : const SizedBox.shrink(),
-          ],
-        ),
-      )),
+              creatorText.text.isNotEmpty
+                  ? Positioned(
+                      left: 0,
+                      bottom: 0,
+                      child: Text(
+                        creatorText.text,
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black.withOpacity(0.3)),
+                      ),
+                    )
+                  : const SizedBox.shrink(),
+            ],
+          ),
+        )),
+      ),
       floatingActionButton: _addnewTextFab,
     );
   }
@@ -75,7 +81,14 @@ class _EditImageScreenState extends EditImageViewModel {
             scrollDirection: Axis.horizontal,
             children: [
               IconButton(
-                  onPressed: () {},
+                  onPressed:  () {
+                    if (context != null) {
+                      saveToGallery(context);
+                    } else {
+                      // Handle null context
+                      print("Context is null");
+                    }
+                  },
                   tooltip: "Save Image",
                   icon: const Icon(
                     Icons.save,

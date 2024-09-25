@@ -1,13 +1,51 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:image_editor/models/text_info.dart';
 import 'package:image_editor/screens/edit_image_screen.dart';
+import 'package:image_editor/utils/utils.dart';
 import 'package:image_editor/widgets/default_button.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:screenshot/screenshot.dart';
 
 abstract class EditImageViewModel extends State<EditImageScreen> {
   TextEditingController textEditingController = TextEditingController();
   TextEditingController creatorText = TextEditingController();
+  ScreenshotController screenshotController = ScreenshotController();
   List<TextInfo> texts = [];
   int CurrentIndex = 0;
+
+  saveToGallery(BuildContext context){
+    if(texts.isNotEmpty){
+      screenshotController.capture().then((Uint8List? image){
+        saveImage(image!);
+         ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+      content: Text('Image saved',style: TextStyle(fontSize: 16.0),),
+    ),
+    );
+      }).catchError((err)=> print(err));
+    }
+  }
+
+  saveImage(Uint8List bytes) async{
+    final time = DateTime.now().toIso8601String().replaceAll('.','-').replaceAll(':','-');
+    final name = "screenshot_$time";
+    await requestPermission(Permission.storage);
+    await ImageGallerySaver.saveImage(bytes, name: name);
+  }
+
+  removeText(BuildContext context){
+    setState(() {
+      texts.removeAt(CurrentIndex);
+    });
+     ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+      content: Text('Deleted',style: TextStyle(fontSize: 16.0),),
+    ),
+    );
+  }
 
   setCurrentIndex(BuildContext context, index) {
     setState(() {
